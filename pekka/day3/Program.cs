@@ -47,7 +47,6 @@ namespace ConsoleApplication
 
             var triangle_index = 0;
             var triangle_max = 3;
-            var side_index = 0;
             Triangle[] batch = new Triangle[triangle_max];
             for(int j=0; j<triangle_max; j++)
             {
@@ -58,15 +57,7 @@ namespace ConsoleApplication
                 int instruction = Int32.Parse(instructions[i]);
                 batch[triangle_index].Side(instruction);
                 triangle_index++;
-                if(triangle_index == triangle_max) 
-                {
-                    triangle_index = 0;
-                    side_index++;
-                }
-                if(side_index == 3) 
-                {
-                    side_index=0;
-                }
+                triangle_index%=triangle_max;
             }
 
             Console.WriteLine("Hello World!" + possible);
