@@ -49,15 +49,13 @@ namespace ConsoleApplication
             var triangle_max = 3;
             var side_index = 0;
             Triangle[] batch = new Triangle[triangle_max];
+            for(int j=0; j<triangle_max; j++)
+            {
+                batch[j] = new Triangle();
+            }
+
             for(var i = 0; i<instructions.Length; i++) {
                 int instruction = Int32.Parse(instructions[i]);
-                if(side_index == 0 && triangle_index==0)
-                {
-                    for(int j=0; j<triangle_max; j++)
-                    {
-                        batch[j] = new Triangle();
-                    }
-                }
                 batch[triangle_index].Side(instruction);
                 triangle_index++;
                 if(triangle_index == triangle_max) 
