@@ -39,11 +39,10 @@ namespace ConsoleApplication
         {
             possible++;
         }
-        Input input = new Input();
+        static Input input = new Input();
         public static void Main(string[] args)
         {
-            Program p = new Program();
-            string[] instructions = p.input.triangles.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+            string[] instructions = Program.input.triangles.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
 
             var triangle_index = 0;
             var triangle_max = 3;
