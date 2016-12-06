@@ -11,15 +11,15 @@ function solve() {
 
 function analyzeFrequencies(input) {
     var columns = []
-    var indexOfLinebreak = input.indexOf("\n") + 1;
+    var numberOfColumns = input.indexOf("\n") + 1;
     for (var i = 0; i < input.length; i++) {
-        if (!columns[i % indexOfLinebreak])
-            columns[i % indexOfLinebreak] = [];
+        if (!columns[i % numberOfColumns])
+            columns[i % numberOfColumns] = [];
 
-        if (!columns[i % indexOfLinebreak][input[i].charCodeAt(0)])
-            columns[i % indexOfLinebreak][input[i].charCodeAt(0)] = 1;
+        if (!columns[i % numberOfColumns][input[i].charCodeAt(0)])
+            columns[i % numberOfColumns][input[i].charCodeAt(0)] = 1;
         else
-            columns[i % indexOfLinebreak][input[i].charCodeAt(0)]++;
+            columns[i % numberOfColumns][input[i].charCodeAt(0)]++;
     }
     return columns;
 }
