@@ -34,10 +34,10 @@ function getMessage(columns, reduceFunction) {
     return message;
 }
 
-function mostCommonReduce(a, b, i) {
+function mostCommonReduce(a, b) {
     return a > b ? a : b;
 }
 
-function leastCommonReduce(a, b, i) {
+function leastCommonReduce(a, b) {
     return a < b ? a : b;
 }
