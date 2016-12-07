@@ -1,4 +1,4 @@
-var d = 1; // north, east, south, west
+var d = 0; // north, east, south, west
 var x = 0, y = 0, ix = undefined, iy;
 
 var c = {};
@@ -8,16 +8,10 @@ var input = 'R2, L3, R2, R4, L2, L1, R2, R4, R1, L4, L5, R5, R5, R2, R2, R1, L2,
 var inst = input.toUpperCase().split(', ');
 
 for (var i = 0; i < inst.length; i++) {
-  var x2=x, y2=y;
-  inst[i][0] == 'R' ? d++ : d--;
-  d == 5 ? d = 1 : d == 0 ? d = 4 : true;
+  d = (d + (inst[i][0] == 'R' ? 1 : 3)) % 4;
   for (var r = 0; r < parseInt(inst[i].substring(1)); r++) {
     c[y+'-'+x] = 1;
-    if (d % 2) {
-      y += (d == 1 ? -1 : 1);
-    } else {
-      x += (d == 2 ? 1 : -1);
-    }
+    d % 2 ? x += d - 2 : y += d - 1;
     if (c[y+'-'+x] == 1 && ix === undefined) { ix = x; iy = y; }
   }
 }
