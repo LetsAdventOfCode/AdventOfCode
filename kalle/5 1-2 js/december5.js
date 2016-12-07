@@ -4,6 +4,7 @@ function solve() {
 
     var int = 0;
     var password = "";
+    var secondPassword = [];
     while (true) {
         var hash = md5(input + int)
         if (hash.toString(16).startsWith("00000")) {
