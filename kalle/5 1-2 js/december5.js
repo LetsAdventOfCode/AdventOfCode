@@ -1,18 +1,25 @@
-
 function solve() {
     var input = document.getElementById("input").value;
 
     var int = 0;
-    var password = "";
+    var firstPassword = "";
     var secondPassword = [];
+    var secondPasswordCount = 0;
     while (true) {
         var hash = md5(input + int)
         if (hash.toString(16).startsWith("00000")) {
-            password += hash[5];
+            if (firstPassword.length < 8)
+                firstPassword += hash[5];
+            if (hash[5] >= 0 && hash[5] < 8 && !secondPassword[hash[5]]) {
+                secondPassword[hash[5]] = hash[6];
+                secondPasswordCount++;
+            }
+                
         }
         int++
-        if(password.length >= 8)
+        if (firstPassword.length >= 8 && secondPassword.filter(function(value) { return value !== undefined }).length >= 8)
             break;
     }
-    document.getElementById("solution").innerHTML = password;
+    document.getElementById("firstPassword").innerHTML = firstPassword;
+    document.getElementById("secondPassword").innerHTML = secondPassword.join("");
 }

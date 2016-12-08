@@ -6,14 +6,13 @@ var intersection;
 var intersections = [];
 function solve() {
     var input = document.getElementById("input").value;
-    var instructions = parseInput(input);
+    var instructions = input.split(", ");
     x = 0;
     y = 0;
     visited[x][y] = 1;
     drawBoard();
     
     for (var i = 0; i < instructions.length; i++) {
-
         move(instructions[i].substring(0, 1), instructions[i].substring(1));
     }
 
@@ -28,14 +27,7 @@ function solve() {
 }
 
 function move(turn, walk) {
-    switch (turn) {
-        case "L":
-            direction = (direction + 3) % 4;
-            break;
-        case "R":
-            direction = (direction + 1) % 4;
-            break;
-    }
+	direction = turn === 'L' ? direction + 3) % 4 : (direction + 1) % 4;
 
     var distance = (direction < 2) ? parseInt(walk) : -parseInt(walk);
     for (var i = 0; i < Math.abs(distance) ; i++) {
@@ -53,7 +45,6 @@ function move(turn, walk) {
         paint(startx, starty, direction);
 
         if (visited[x][y] > 1) {
-
             if (!intersection) {
                 intersection = { x: x, y: y };
             } else {
@@ -115,7 +106,6 @@ function drawBoard() {
         context.lineTo(0.5 + x + p, bh + p);
     }
 
-
     for (var x = 0; x <= bh; x += gridWidth) {
         context.moveTo(p, 0.5 + x + p);
         context.lineTo(bw + p, 0.5 + x + p);
@@ -123,10 +113,4 @@ function drawBoard() {
 
     context.strokeStyle = "black";
     context.stroke();
-}
-
-function parseInput(input) {
-    return input.split(",").map(function (str) {
-        return str.trim();
-    });
 }
